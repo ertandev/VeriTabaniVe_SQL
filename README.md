@@ -48,11 +48,18 @@ Aşağıda **NovaStoreDB** veri tabanının tablolar arası 1:N ve M:N ilişkile
 ErtanYolcu_NovaStore_Proje/
 ├── ErtanYolcu_NovaStore_Proje.sql    # DDL, DML, DQL, View ve Backup içeren tek ana T-SQL dosyası
 ├── ErtanYolcu_NovaStore_Proje.docx   # Çıktı tabloları, açıklamalar ve kod kutulu Word teslim raporu
-├── ErtanYolcu_NovaStore_Proje.png    # 300 DPI yüksek çözünürlüklü İlişkisel Şema (ER) Diyagramı
-├── docker-compose.yml                # Mac/Linux ortamında SQL Server'ı ayağa kaldıran Docker compose dosyası
+├── ErtanYolcu_NovaStore_Proje.png    # SSMS Database Diagrams ilişkisel şema ekran görüntüsü
+├── screenshots/                      # SQL Server Management Studio (SSMS) sorgu ve sonuç kanıtları
+│   ├── ssms_database_diagram.png     # SSMS Veri tabanı diyagramı
+│   ├── ssms_q1_stock.png             # Stok < 20 temel listeleme arayüz çıktısı
+│   ├── ssms_q2_join.png              # Müşteri & sipariş INNER JOIN çıktısı
+│   ├── ssms_q3_multi_join.png        # Ahmet Yılmaz 5'li JOIN sepet detay çıktısı
+│   ├── ssms_q4_group_by.png          # Kategori envanteri LEFT JOIN & COUNT çıktısı
+│   ├── ssms_q5_revenue.png           # Ciro analizi SUM & GROUP BY çıktısı
+│   ├── ssms_q6_datediff.png          # Zaman analizi DATEDIFF çıktısı
+│   └── ssms_view.png                 # vw_SiparisOzet VIEW sorgu çıktısı
+├── docker-compose.yml                # Mac ortamında SQL Server'ı ayağa kaldıran Docker compose dosyası
 ├── README.md                         # Kapsamlı proje dokümantasyonu ve mimari kılavuz
-├── build_word_report.py              # Canlı DB'den çıktıları okuyup .docx üreten Python scripti
-├── generate_diagram.py               # Vektörel ER diyagramı oluşturan grafik betiği
 └── .gitignore                        # Git dışlama kuralları
 ```
 
