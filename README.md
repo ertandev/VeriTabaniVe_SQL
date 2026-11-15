@@ -125,14 +125,6 @@ GO
 
 ---
 
-## <img src="https://api.iconify.design/lucide/shield-check.svg?color=%2334d399" width="20" height="20" align="center" /> Temiz Kod ve Tasarım Standartları
-
-- **Conventional Commits:** Git geçmişinde `feat(ddl)`, `feat(dml)`, `feat(dql)`, `feat(objects)`, `docs:` standartlarına tam uyum.
-- **İsimlendirme Standartları (Naming Conventions):** Kısıtlayıcılar için kurumsal ön ekler (`PK_`, `FK_`, `UQ_`, `DF_`).
-- **Veri Tipi Hassasiyeti:** Parasal değerler için `DECIMAL(10,2)`, zaman için `DATETIME`, metinler için boyutlandırılmış `VARCHAR`.
-- **Referans Bütünlüğü (Referential Integrity):** Yabancı anahtar ilişkilerinde önce ana tabloların oluşturulması kuralı.
-
----
 
 <p align="center">
   <b>Geliştirici:</b> <a href="https://github.com/ertandev">Ertan Yolcu</a> &nbsp;|&nbsp; 
