@@ -201,3 +201,99 @@ INSERT INTO dbo.OrderDetails (OrderID, ProductID, Quantity) VALUES
 (10, 8, 1), -- Yazılım Mimarisi ve Clean Code (1 Adet)
 (10, 7, 1); -- Veri Tabanı Yönetim Sistemleri (1 Adet)
 GO
+
+-- =============================================================================
+-- BÖLÜM 3: Sorgulama ve Analiz (DQL - Select ve Joins)
+-- =============================================================================
+
+-- 1. Temel Listeleme:
+-- Soru: Stok miktarı 20'den az olan ürünlerin adını ve stok miktarını,
+--       stok miktarına göre "AZALAN" sırada listeleyin.
+-- Kullanılacaklar: SELECT, WHERE, ORDER BY
+SELECT 
+    p.ProductName AS [Ürün Adı],
+    p.Stock AS [Stok Miktarı]
+FROM dbo.Products AS p
+WHERE p.Stock < 20
+ORDER BY p.Stock DESC;
+GO
+
+-- 2. Veri Birleştirme (JOIN):
+-- Soru: Hangi müşteri, hangi tarihte sipariş vermiş? 
+--       Sonuçta Müşteri Adı, Şehir, Sipariş Tarihi ve Toplam Tutar gözüksün.
+-- Kullanılacaklar: INNER JOIN (Customers ve Orders tabloları)
+SELECT 
+    c.FullName AS [Müşteri Adı],
+    c.City AS [Şehir],
+    CONVERT(VARCHAR(19), o.OrderDate, 120) AS [Sipariş Tarihi],
+    o.TotalAmount AS [Toplam Tutar]
+FROM dbo.Customers AS c
+INNER JOIN dbo.Orders AS o 
+    ON c.CustomerID = o.CustomerID
+ORDER BY o.OrderDate DESC;
+GO
+
+-- 3. Çoklu Birleştirme ve Detay Raporu:
+-- Soru: "Ahmet Yılmaz" isimli müşterinin aldığı ürünlerin isimlerini, 
+--       fiyatlarını ve kategorilerini listeleyin.
+-- Kullanılacaklar: JOIN (Customers, Orders, OrderDetails, Products, Categories zincirleme)
+SELECT 
+    c.FullName AS [Müşteri Adı],
+    p.ProductName AS [Ürün Adı],
+    p.Price AS [Birim Fiyat],
+    cat.CategoryName AS [Kategori Adı]
+FROM dbo.Customers AS c
+INNER JOIN dbo.Orders AS o 
+    ON c.CustomerID = o.CustomerID
+INNER JOIN dbo.OrderDetails AS od 
+    ON o.OrderID = od.OrderID
+INNER JOIN dbo.Products AS p 
+    ON od.ProductID = p.ProductID
+INNER JOIN dbo.Categories AS cat 
+    ON p.CategoryID = cat.CategoryID
+WHERE c.FullName = 'Ahmet Yılmaz';
+GO
+
+-- 4. Gruplama ve Aggregate Fonksiyonlar:
+-- Soru: Hangi kategoride toplam kaç adet ürünümüz var? (Örn: Elektronik - 5 ürün).
+-- Kullanılacaklar: GROUP BY, COUNT(), LEFT JOIN
+-- Not: Ürünü olmayan kategori varsa 0 gösterebilmesi için LEFT JOIN tercih edilmiştir.
+SELECT 
+    cat.CategoryName AS [Kategori Adı],
+    COUNT(p.ProductID) AS [Toplam Ürün Sayısı]
+FROM dbo.Categories AS cat
+LEFT JOIN dbo.Products AS p 
+    ON cat.CategoryID = p.CategoryID
+GROUP BY cat.CategoryID, cat.CategoryName
+ORDER BY [Toplam Ürün Sayısı] DESC;
+GO
+
+-- 5. Ciro Analizi (Zor):
+-- Soru: Her müşterinin şirkete kazandırdığı toplam ciro nedir? 
+--       En çok harcama yapan müşteriden en aza doğru sıralayın.
+-- Kullanılacaklar: SUM(), GROUP BY, ORDER BY
+SELECT 
+    c.CustomerID AS [Müşteri ID],
+    c.FullName AS [Müşteri Adı],
+    c.City AS [Şehir],
+    SUM(o.TotalAmount) AS [Toplam Ciro]
+FROM dbo.Customers AS c
+INNER JOIN dbo.Orders AS o 
+    ON c.CustomerID = o.CustomerID
+GROUP BY c.CustomerID, c.FullName, c.City
+ORDER BY [Toplam Ciro] DESC;
+GO
+
+-- 6. Zaman Analizi:
+-- Soru: Bugünün tarihine göre, siparişlerin üzerinden kaç gün geçtiğini hesaplayan bir sorgu yazın.
+-- Kullanılacaklar: DATEDIFF(), GETDATE()
+SELECT 
+    o.OrderID AS [Sipariş No],
+    c.FullName AS [Müşteri Adı],
+    CONVERT(VARCHAR(10), o.OrderDate, 120) AS [Sipariş Tarihi],
+    DATEDIFF(DAY, o.OrderDate, GETDATE()) AS [Geçen Gün Sayısı]
+FROM dbo.Orders AS o
+INNER JOIN dbo.Customers AS c 
+    ON o.CustomerID = c.CustomerID
+ORDER BY [Geçen Gün Sayısı] ASC;
+GO
