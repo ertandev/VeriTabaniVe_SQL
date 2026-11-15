@@ -44,7 +44,7 @@ Aşağıda **NovaStoreDB** veri tabanının SQL Server Management Studio (SSMS) 
 ## <img src="https://api.iconify.design/lucide/folder-tree.svg?color=%2338bdf8" width="20" height="20" align="center" /> Proje Dizin Yapısı
 
 ```
-ErtanYolcu_NovaStore_Proje/
+VeriTabaniVe_SQL/
 ├── ErtanYolcu_NovaStore_Proje.sql    # DDL, DML, DQL, View ve Backup içeren tek ana T-SQL dosyası
 ├── ErtanYolcu_NovaStore_Proje.docx   # SSMS ekran kanıtları ve açıklamalı Word teslim raporu
 ├── ErtanYolcu_NovaStore_Proje.png    # SSMS Database Diagrams ilişkisel şema ekran görüntüsü
