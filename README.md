@@ -1,38 +1,37 @@
 # <img src="https://api.iconify.design/lucide/database.svg?color=%2338bdf8" width="28" height="28" align="center" /> NOVASTORE — E-Ticaret Veri Yönetim ve Analiz Sistemi
 
 <p align="left">
-  <img src="https://img.shields.io/badge/MS%20SQL%20Server-2022%20%7C%20Azure%20SQL-CC292B.svg?style=flat-square&logo=microsoftsqlserver&logoColor=white" alt="MS SQL Server" />
+  <img src="https://img.shields.io/badge/MS%20SQL%20Server-2022%20RTM-CC292B.svg?style=flat-square&logo=microsoftsqlserver&logoColor=white" alt="MS SQL Server" />
   <img src="https://img.shields.io/badge/Language-T--SQL-0078D4.svg?style=flat-square" alt="T-SQL" />
-  <img src="https://img.shields.io/badge/Docker-Ready%20%7C%20ARM64-2496ED.svg?style=flat-square&logo=docker&logoColor=white" alt="Docker Ready" />
+  <img src="https://img.shields.io/badge/IDE-SSMS%20v19%2F20-0078D7.svg?style=flat-square" alt="SSMS" />
   <img src="https://img.shields.io/badge/Architecture-Relational%20%283NF%29-8A2BE2.svg?style=flat-square" alt="Architecture" />
   <img src="https://img.shields.io/badge/Status-Completed%20%7C%20Verified-34d399.svg?style=flat-square" alt="Status" />
   <img src="https://img.shields.io/badge/License-MIT-94a3b8.svg?style=flat-square" alt="License" />
 </p>
 
 > **5 Günlük SQL Eğitimi — Bitirme Projesi & DBA Teknik Yönetim Raporu**  
-> Bu proje; yeni kurulan **NovaStore** e-ticaret platformunun veri tabanı yöneticisi (DBA) olarak, ilişkisel veri modelinin sıfırdan tasarlanması (DDL), test ve analiz verilerinin girilmesi (DML), yönetim kurulu için karar destek sorgularının (DQL) hazırlanması, View ve Backup gibi kurumsal veri tabanı nesnelerinin oluşturulmasını kapsayan uçtan uca bir SQL Server projesidir.
+> Bu proje; yeni kurulan **NovaStore** e-ticaret platformunun veri tabanı yöneticisi (DBA) olarak, ilişkisel veri modelinin sıfırdan tasarlanması (DDL), test ve analiz verilerinin girilmesi (DML), yönetim kurulu için karar destek sorgularının (DQL) hazırlanması, View ve Backup gibi kurumsal veri tabanı nesnelerinin oluşturulmasını kapsayan uçtan uca bir Microsoft SQL Server projesidir.
 
 ---
 
 ## <img src="https://api.iconify.design/lucide/sparkles.svg?color=%23818cf8" width="20" height="20" align="center" /> Proje Genel Bakış ve Kazanılan Yetkinlikler
 
-Bu projede eğitim yönergesi kapsamındaki tüm aşamalar ve kurumsal DBA best practice'leri eksiksiz olarak hayata geçirilmiştir:
+Bu projede eğitim yönergesi kapsamındaki tüm aşamalar ve kurumsal DBA standartları eksiksiz olarak hayata geçirilmiştir:
 
 - <img src="https://api.iconify.design/lucide/check-circle-2.svg?color=%2334d399" width="16" height="16" align="center" /> **BÖLÜM 1 (DDL & Veri Tabanı Mimarisi):** `NovaStoreDB` veri tabanının oluşturulması, 5 ilişkisel tablonun (`Categories`, `Customers`, `Products`, `Orders`, `OrderDetails`) bağımlılık sırasına uygun tasarımı, `PRIMARY KEY (IDENTITY)`, `FOREIGN KEY`, `UNIQUE`, `NOT NULL` ve `DEFAULT` kısıtlayıcıları.
 - <img src="https://api.iconify.design/lucide/check-circle-2.svg?color=%2334d399" width="16" height="16" align="center" /> **BÖLÜM 2 (DML & Dummy Data):** 5 Kategori, farklı fiyat/stok seviyelerine sahip 13 Ürün, 6 Müşteri, geriye dönük farklı tarihlere yayılan 10 Sipariş ve 14 Sipariş Detayı ile gerçekçi test veri setinin oluşturulması.
 - <img src="https://api.iconify.design/lucide/check-circle-2.svg?color=%2334d399" width="16" height="16" align="center" /> **BÖLÜM 3 (DQL & İş Analitiği):** Stok filtreleme, 2'li ve 5'li `INNER JOIN`, kategori envanteri için `LEFT JOIN & COUNT`, müşteri ciro analizi için `SUM & GROUP BY` ve zaman analitiği için dinamik `DATEDIFF(DAY, OrderDate, GETDATE())` sorguları.
 - <img src="https://api.iconify.design/lucide/check-circle-2.svg?color=%2334d399" width="16" height="16" align="center" /> **BÖLÜM 4 (İleri Seviye Veri Tabanı Nesneleri):** Raporlama optimizasyonu için `vw_SiparisOzet` görünümü (VIEW) ve felaket kurtarma için kurumsal `BACKUP DATABASE` betiği.
-- <img src="https://api.iconify.design/lucide/star.svg?color=%23fbbf24" width="16" height="16" align="center" /> **Apple Silicon (M-Serisi Mac) Desteği:** macOS üzerinde Microsoft SQL Server motorunu sıfır konfigürasyonla çalıştırmak için hazır Docker altyapısı (`docker-compose.yml`).
-- <img src="https://api.iconify.design/lucide/star.svg?color=%23fbbf24" width="16" height="16" align="center" /> **Kurumsal Teslimat Seti:** Tek parça SQL betiği, Markdown kod kutuları ve formatlı sonuç tablolarını barındıran Word raporu (`.docx`) ile 300 DPI ER diyagramı (`.png`).
+- <img src="https://api.iconify.design/lucide/star.svg?color=%23fbbf24" width="16" height="16" align="center" /> **Kurumsal SSMS Teslimat Seti:** Tek parça SQL betiği, SSMS arayüz ekran görüntüleri, Markdown kod kutuları ve detaylı analiz açıklamalarını barındıran Word raporu (`.docx`) ile SSMS Database Diagrams ilişkisel şeması (`.png`).
 
 ---
 
-## <img src="https://api.iconify.design/lucide/git-branch.svg?color=%2338bdf8" width="20" height="20" align="center" /> İlişkisel Veri Tabanı Şeması (ER Diyagramı)
+## <img src="https://api.iconify.design/lucide/git-branch.svg?color=%2338bdf8" width="20" height="20" align="center" /> İlişkisel Veri Tabanı Şeması (SSMS Database Diagram)
 
-Aşağıda **NovaStoreDB** veri tabanının tablolar arası 1:N ve M:N ilişkilerini, Primary Key (PK) ve Foreign Key (FK) bağımlılıklarını gösteren mimari şeması yer almaktadır:
+Aşağıda **NovaStoreDB** veri tabanının SQL Server Management Studio (SSMS) Database Diagrams arayüzünde oluşturulan ilişkisel mimarisi, Primary Key (PK) ve Foreign Key (FK) bağlantıları yer almaktadır:
 
 <p align="center">
-  <img src="./ErtanYolcu_NovaStore_Proje.png" alt="NovaStoreDB ER Diyagramı" width="100%" />
+  <img src="./ErtanYolcu_NovaStore_Proje.png" alt="NovaStoreDB SSMS Database Diagram" width="100%" />
 </p>
 
 ### İlişkisel Bütünlük Kuralları:
@@ -47,7 +46,7 @@ Aşağıda **NovaStoreDB** veri tabanının tablolar arası 1:N ve M:N ilişkile
 ```
 ErtanYolcu_NovaStore_Proje/
 ├── ErtanYolcu_NovaStore_Proje.sql    # DDL, DML, DQL, View ve Backup içeren tek ana T-SQL dosyası
-├── ErtanYolcu_NovaStore_Proje.docx   # Çıktı tabloları, açıklamalar ve kod kutulu Word teslim raporu
+├── ErtanYolcu_NovaStore_Proje.docx   # SSMS ekran kanıtları ve açıklamalı Word teslim raporu
 ├── ErtanYolcu_NovaStore_Proje.png    # SSMS Database Diagrams ilişkisel şema ekran görüntüsü
 ├── screenshots/                      # SQL Server Management Studio (SSMS) sorgu ve sonuç kanıtları
 │   ├── ssms_database_diagram.png     # SSMS Veri tabanı diyagramı
@@ -58,7 +57,6 @@ ErtanYolcu_NovaStore_Proje/
 │   ├── ssms_q5_revenue.png           # Ciro analizi SUM & GROUP BY çıktısı
 │   ├── ssms_q6_datediff.png          # Zaman analizi DATEDIFF çıktısı
 │   └── ssms_view.png                 # vw_SiparisOzet VIEW sorgu çıktısı
-├── docker-compose.yml                # Mac ortamında SQL Server'ı ayağa kaldıran Docker compose dosyası
 ├── README.md                         # Kapsamlı proje dokümantasyonu ve mimari kılavuz
 └── .gitignore                        # Git dışlama kuralları
 ```
@@ -67,7 +65,7 @@ ErtanYolcu_NovaStore_Proje/
 
 ## <img src="https://api.iconify.design/lucide/terminal.svg?color=%2338bdf8" width="20" height="20" align="center" /> BÖLÜM 3: Analitik Sorgu ve Raporlama Matrisi
 
-Yönetim kurulunun karar destek süreçleri için hazırlanan 6 temel analitik rapor ve elde edilen gerçek veritabanı sonuçları:
+Yönetim kurulunun karar destek süreçleri için hazırlanan 6 temel analitik rapor ve elde edilen veritabanı sonuçları:
 
 | # | Rapor Başlığı | Kullanılan SQL Teknikleri | Elde Edilen Analitik Çıktı / Yönetici Özeti |
 | :-: | :--- | :--- | :--- |
@@ -118,26 +116,12 @@ GO
 
 ## <img src="https://api.iconify.design/lucide/wrench.svg?color=%2338bdf8" width="20" height="20" align="center" /> Kurulum ve Çalıştırma Rehberi
 
-### <img src="https://api.iconify.design/lucide/apple.svg?color=%2394a3b8" width="18" height="18" align="center" /> Mac Ortamında (Apple Silicon / Intel) Docker ile Çalıştırma
+### SQL Server Management Studio (SSMS) ile Çalıştırma
 
-Microsoft, SQL Server için doğrudan yerel `.dmg` sunmadığından Mac ortamında en kararlı ve performanslı yöntem Docker konteyneridir:
-
-#### 1. Servisi Başlatma
-Proje dizininde terminali açıp şu komutu çalıştırın:
-```bash
-docker compose up -d
-```
-
-#### 2. Bağlantı Bilgileri
-Herhangi bir SQL istemcisi (Azure Data Studio, DBeaver, VS Code MSSQL) ile bağlanın:
-- **Server:** `localhost,1433`
-- **Authentication:** `SQL Login`
-- **Username:** `sa`
-- **Password:** `NovaStore@2026!`
-- **Database:** `NovaStoreDB`
-
-#### 3. Tüm Scripti Çalıştırma
-`ErtanYolcu_NovaStore_Proje.sql` dosyasını açıp tek seferde (`F5` veya *Run*) çalıştırabilirsiniz. Betik tüm veri tabanını, tabloları, verileri, sorguları ve View'i sırasıyla otomatik oluşturacaktır.
+1. **SSMS'i Başlatma:** SQL Server Management Studio uygulamasını açın ve SQL Server Instance'ınıza bağlanın.
+2. **Scripti Açma:** `ErtanYolcu_NovaStore_Proje.sql` dosyasını SSMS içerisine sürükleyip bırakın veya `File -> Open -> File` menüsünden açın.
+3. **Tek Seferde Çalıştırma:** Araç çubuğundaki **Execute** butonuna tıklayın (veya klavyeden `F5` tuşuna basın).
+4. **Sonuçları İnceleme:** Betik; `NovaStoreDB` veri tabanını, tabloları, ilişkisel kısıtlayıcıları, tohum test verilerini, analitik sorguları ve `vw_SiparisOzet` görünümünü sırasıyla otomatik olarak oluşturup sonuçları **Results** ızgarasında listeleyecektir.
 
 ---
 
