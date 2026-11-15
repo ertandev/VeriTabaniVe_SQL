@@ -1,0 +1,14 @@
+{
+  "mssql.connections": [
+    {
+      "server": "localhost,1433",
+      "database": "NovaStoreDB",
+      "authenticationType": "SqlLogin",
+      "user": "sa",
+      "password": "NovaStore@2026!",
+      "emptyPasswordInput": false,
+      "savePassword": true,
+      "profileName": "NovaStore Local (SQL Server)"
+    }
+  ]
+}
