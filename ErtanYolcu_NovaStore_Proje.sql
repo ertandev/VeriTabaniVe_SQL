@@ -297,3 +297,51 @@ INNER JOIN dbo.Customers AS c
     ON o.CustomerID = c.CustomerID
 ORDER BY [Geçen Gün Sayısı] ASC;
 GO
+
+-- =============================================================================
+-- BÖLÜM 4: İleri Seviye Veri Tabanı Nesneleri
+-- =============================================================================
+
+-- 1. View (Görünüm) Oluşturma:
+-- Soru: Sürekli uzun JOIN sorguları yazmamak için; Müşteri Adı, Sipariş Tarihi,
+--       Ürün Adı ve Adet bilgilerini tek bir tablodaymış gibi getiren
+--       vw_SiparisOzet isminde bir VIEW oluşturun.
+-- Konu: CREATE VIEW
+IF OBJECT_ID('dbo.vw_SiparisOzet', 'V') IS NOT NULL
+    DROP VIEW dbo.vw_SiparisOzet;
+GO
+
+CREATE VIEW dbo.vw_SiparisOzet
+AS
+SELECT 
+    c.FullName AS [Müşteri Adı],
+    CONVERT(VARCHAR(19), o.OrderDate, 120) AS [Sipariş Tarihi],
+    p.ProductName AS [Ürün Adı],
+    od.Quantity AS [Adet]
+FROM dbo.Customers AS c
+INNER JOIN dbo.Orders AS o 
+    ON c.CustomerID = o.CustomerID
+INNER JOIN dbo.OrderDetails AS od 
+    ON o.OrderID = od.OrderID
+INNER JOIN dbo.Products AS p 
+    ON od.ProductID = p.ProductID;
+GO
+
+-- Oluşturulan View'in Test Edilmesi:
+SELECT * FROM dbo.vw_SiparisOzet;
+GO
+
+-- 2. Yedekleme (Backup):
+-- Soru: Projenizi tamamladıktan sonra NovaStoreDB veri tabanının C:\Yedek\
+--       klasörüne yedeğini alan T-SQL komutunu yazın.
+-- Konu: BACKUP DATABASE
+-- Not: Windows SQL Server ortamında bu komutu çalıştırmadan önce 'C:\Yedek\' 
+--      klasörünün mevcut olduğundan ve SQL Server servis hesabının yazma yetkisi
+--      bulunduğundan emin olunmalıdır.
+BACKUP DATABASE NovaStoreDB
+TO DISK = 'C:\Yedek\NovaStoreDB.bak'
+WITH 
+    FORMAT,
+    MEDIANAME = 'NovaStoreDBBackup',
+    NAME = 'Full Backup of NovaStoreDB';
+GO
